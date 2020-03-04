@@ -176,9 +176,11 @@ class CD4PEJobRunner < Object
     :AFTER_JOB_FAILURE => "AFTER_JOB_FAILURE" }
 
   def initialize(working_dir:, job_token:, web_ui_endpoint:, job_owner:, job_instance_id:, logger:, windows_job: false, base_64_ca_cert: nil, docker_image: nil, docker_run_args: nil)
+    @logger = logger
     @working_dir = working_dir
     @job_token = ENV['CD4PE_TOKEN']
-    puts "job token #{@job_token}"
+    @logger.log("ENV JOB TOKEN #{ENV['CD4PE_TOKEN']}")
+    @logger.log("job token #{@job_token}")
     @web_ui_endpoint = web_ui_endpoint
     @job_owner = job_owner
     @job_instance_id = job_instance_id
@@ -187,7 +189,6 @@ class CD4PEJobRunner < Object
     @docker_based_job = !blank?(docker_image)
     @windows_job = windows_job
 
-    @logger = logger
 
     job_dir_name = windows_job ? "windows" : "unix"
     @local_jobs_dir = File.join(@working_dir, "cd4pe_job", "jobs", job_dir_name)
