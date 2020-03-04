@@ -179,7 +179,6 @@ class CD4PEJobRunner < Object
     @logger = logger
     @working_dir = working_dir
     @job_token = job_token
-    @logger.log("job token #{@job_token}")
     @web_ui_endpoint = web_ui_endpoint
     @job_owner = job_owner
     @job_instance_id = job_instance_id

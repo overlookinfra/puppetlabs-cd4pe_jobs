@@ -10,8 +10,9 @@
       "description": "web ui endpoint of CD4PE. Used to download control repo and job scripts to execute jobs."
     },
     "cd4pe_token": {
-      "type": "Sensitive[String[1]]",
-      "description": "Token used to hit Tokened CD4PE endpoints."
+      "type": "String[1]",
+      "description": "Token used to hit Tokened CD4PE endpoints.",
+      "sensitive": true
     },
     "cd4pe_job_owner": {
       "type": "String[1]",
