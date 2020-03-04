@@ -177,7 +177,8 @@ class CD4PEJobRunner < Object
 
   def initialize(working_dir:, job_token:, web_ui_endpoint:, job_owner:, job_instance_id:, logger:, windows_job: false, base_64_ca_cert: nil, docker_image: nil, docker_run_args: nil)
     @working_dir = working_dir
-    @job_token = job_token
+    @job_token = ENV['CD4PE_TOKEN']
+    puts "job token #{@job_token}"
     @web_ui_endpoint = web_ui_endpoint
     @job_owner = job_owner
     @job_instance_id = job_instance_id
@@ -406,11 +407,11 @@ if __FILE__ == $0 # This block will only be invoked if this file is executed. Wi
 
     params = JSON.parse(STDIN.read)
 
+    job_token = ENV['CD4PE_TOKEN']
     docker_image = params['docker_image']
     docker_run_args = params["docker_run_args"]
     job_instance_id = params["job_instance_id"]
     web_ui_endpoint = params['cd4pe_web_ui_endpoint']
-    job_token = params['cd4pe_token']
     job_owner = params['cd4pe_job_owner']
     base_64_ca_cert = params['base_64_ca_cert']
 
